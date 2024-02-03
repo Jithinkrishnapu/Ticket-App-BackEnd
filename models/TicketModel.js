@@ -27,9 +27,9 @@ const ticketSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    createdBy: {
+    comments: {
       type: String,
-      required: true,
+      default:''
     },
     status: {
       type: String,

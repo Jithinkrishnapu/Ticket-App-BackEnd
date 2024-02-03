@@ -7,7 +7,7 @@ const createTicket = async (req, res) => {
     platform,
     description,
     userName,
-    createdBy,
+    comments,
     subject,
     assignedTo,
   } = req.body;
@@ -17,7 +17,7 @@ const createTicket = async (req, res) => {
       platform,
       description,
       userName,
-      createdBy,
+      comments,
       subject,
       assignedTo,
     });
