@@ -27,15 +27,35 @@ const createTicket = async (req, res) => {
   }
 };
 
+// const getAllTickets = async (req, res) => {
+//   try {
+//     const tickets = await Ticket.find({}).sort({ createdAt: -1 });
+//     res.status(200).json(tickets);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json(error.message);
+//   }
+// };
+
+
 const getAllTickets = async (req, res) => {
   try {
-    const tickets = await Ticket.find({}).sort({ createdAt: -1 });
+    // Assuming the department is passed as a query parameter, e.g., /tickets?department=IT
+    const assignedTo = req.query.assignedTo;
+
+    // Create a query object to filter tickets based on the department
+    const query = assignedTo ? { assignedTo } : {};
+
+    // Find tickets based on the query and sort by createdAt
+    const tickets = await Ticket.find(query).sort({ createdAt: -1 });
+
     res.status(200).json(tickets);
   } catch (error) {
     console.log(error);
     res.status(500).json(error.message);
   }
 };
+
 
 const getTicketByID = async (req, res) => {
   const { id } = req.params;
